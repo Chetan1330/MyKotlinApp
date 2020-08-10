@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="123dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="262dp"
+        android:background="@drawable/logo" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="380dp"
+        android:layout_height="334dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="91dp"
+        android:background="@drawable/backgradient"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            style="@style/Font_family_light"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/edit_style"
+            android:digits="0123456789"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawablePadding="@dimen/padding_16"
+            android:ems="10"
+            android:hint="Enter phone number"
+            android:inputType="phone"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonGetVerificationCode"
+            android:layout_width="205dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="93dp"
+            android:text="Get Verification Code"
+            android:textAllCaps="false" />
+
+        <EditText
+            android:id="@+id/editTextCode"
+            style="@style/Font_family_light"
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/edit_style"
+            android:digits="0123456789"
+            android:drawableLeft="@drawable/password"
+            android:drawablePadding="@dimen/padding_16"
+            android:hint="Enter code received"
+            android:inputType="number"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:layout_width="205dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="108dp"
+            android:text="Sign In" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgprofile"
+        android:layout_width="103dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="432dp"
+        android:background="@drawable/profile" />
+
+</RelativeLayout>
