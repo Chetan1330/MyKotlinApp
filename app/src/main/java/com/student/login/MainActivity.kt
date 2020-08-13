@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -16,20 +17,27 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
     var mAuth: FirebaseAuth? = null
 
     var codeSent: String? = null
+    lateinit var refphone : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
+        refphone = FirebaseDatabase.getInstance().getReference().child("phone")
+
+        btnlogin.visibility = View.INVISIBLE
+
 
 
         buttonGetVerificationCode.setOnClickListener{
@@ -48,15 +56,77 @@ class MainActivity : AppCompatActivity() {
                             PERMISSION_REQ_ID
                     )
             ){
-                sendVerificationCode()
+                refphone.addValueEventListener(object : ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError?) {
+                    }
+                    override fun onDataChange(p0: DataSnapshot?) {
+                        val novalues = p0!!.value.toString()
+                        if (editTextPhone.text.toString().isEmpty()) {
+                            editTextPhone.error = "Phone number is required"
+                            editTextPhone.requestFocus()
+                            return
+                        }
+                        if (editTextPhone.text.toString().length < 10) {
+                            editTextPhone.error = "Please enter a valid phone"
+                            editTextPhone.requestFocus()
+                            return
+                        }
+                        if (novalues.contains(editTextPhone.text.toString())){
+                            btnlogin.visibility = View.VISIBLE
+                            editTextPhone.visibility = View.INVISIBLE
+                            buttonGetVerificationCode.visibility = View.INVISIBLE
+                            editTextCode.visibility = View.INVISIBLE
+                            buttonSignIn.visibility = View.INVISIBLE
+                            Showuser()
+                        }else{
+                            sendVerificationCode()
+                        }
+                    }
+                })
             }
         }
 
         buttonSignIn.setOnClickListener{
-            verifySignInCode()
+
+            refphone.addValueEventListener(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError?) {
+                }
+                override fun onDataChange(p0: DataSnapshot?) {
+                    val novalues = p0!!.value.toString()
+                    if (editTextPhone.text.toString().isEmpty()) {
+                        editTextPhone.error = "Phone number is required"
+                        editTextPhone.requestFocus()
+                        return
+                    }
+                    if (editTextPhone.text.toString().length < 10) {
+                        editTextPhone.error = "Please enter a valid phone"
+                        editTextPhone.requestFocus()
+                        return
+                    }
+                    if (novalues.contains(editTextPhone.text.toString())){
+                        btnlogin.visibility = View.VISIBLE
+                        editTextPhone.visibility = View.INVISIBLE
+                        buttonGetVerificationCode.visibility = View.INVISIBLE
+                        editTextCode.visibility = View.INVISIBLE
+                        buttonSignIn.visibility = View.INVISIBLE
+                        Showuser()
+                    }else{
+                        verifySignInCode()
+                    }
+                }
+            })
+
+        }
+
+        btnlogin.setOnClickListener{
+            startActivity(Intent( this, Profile::class.java))
         }
     }
 
+
+    private fun Showuser() {
+        Toast.makeText(this, "${editTextPhone.text.toString()} User Exist Please Log In", Toast.LENGTH_LONG).show()
+    }
 
     private fun verifySignInCode() {
         val code = editTextCode.text.toString()
@@ -75,6 +145,7 @@ class MainActivity : AppCompatActivity() {
                         applicationContext,
                         "Login Successfull", Toast.LENGTH_LONG
                     ).show()
+                    refphone.child(editTextPhone.text.toString()).setValue(editTextPhone.text.toString())
                     startActivity(Intent( this, Profile::class.java))
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {

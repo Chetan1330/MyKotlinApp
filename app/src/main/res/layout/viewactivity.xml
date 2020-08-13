@@ -4,11 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewUploadsActivity">
+    tools:context=".ViewUploadsActivity"
+    android:background="@drawable/backgradient"
+    >
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="622dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="109dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        style="@style/Font_family_light"
+        android:background="@drawable/edit_style"
+        android:drawablePadding="@dimen/padding_16"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="4dp"
+        >
+
+        <Button
+            android:id="@+id/privatefile"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="Private" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Private/Public"
+            android:textSize="16sp"
+            style="@style/Font_family_light"
+            android:layout_marginTop="-12dp"
+            />
+
+        <Button
+            android:id="@+id/publicfile"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="Public" />
+
+    </LinearLayout>
 
 </RelativeLayout>
