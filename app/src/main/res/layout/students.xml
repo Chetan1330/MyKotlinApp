@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgradient"
-    >
-
+    xmlns:EMVideoView="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backgradient">
 
     <TextView
         android:id="@+id/filename"
@@ -50,10 +48,32 @@
         android:layout_width="157dp"
         android:layout_height="48dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="116dp"
         android:text="Download File"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.359"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/ep_video_view"
+        android:layout_width="136dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="108dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fill" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="96dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

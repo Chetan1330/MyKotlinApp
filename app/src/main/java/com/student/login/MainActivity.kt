@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         refphone = FirebaseDatabase.getInstance().getReference().child("phone")
+        //refphone.setValue("77760")
 
         btnlogin.visibility = View.INVISIBLE
 
